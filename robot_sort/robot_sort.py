@@ -125,7 +125,7 @@ class SortingRobot:
         while self.can_move_right:
             self.set_light_off()
             print('inside a while loop attempt', self._item)
-            print(self._position, self.compare_item())
+            print(self._position)
             self.compare_item()
             if self.compare_item() == -1:
                 self.bigger()
