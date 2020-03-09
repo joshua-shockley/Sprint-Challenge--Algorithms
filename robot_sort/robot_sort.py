@@ -95,10 +95,23 @@ class SortingRobot:
         return self._light == "ON"
 
     def bigger(self):
-        self.compare_items()
-        if self.compare_items() ==  # what is in list is bigger:
-
-        if self.compare_items() ==  # what is in list is bigger:
+        # compare and if item in list is bigger
+        self.compare_item()
+        if self.compare_item() == -1:  # what is in list is bigger held item smaller
+            if self.can_move_right == True:
+                self.swap_item()
+                self.set_light_on()
+                self.move_right()
+                return self.bigger()
+            elif self.can_move_right == False:
+                return f"blah, {self._position}, {self._item}, well"
+        if self.compare_item() == 1:  # what is in possesion is bigger the list item is smaller
+            if self.can_move_right:
+                self.move_right()
+            if self.can_move_right == False:
+                self.swap_item()
+                print(self._position)
+                return False
 
     def sort(self):
         """
@@ -109,10 +122,16 @@ class SortingRobot:
         self.swap_item()
 
         # Fill this out
-        while self.can_move_right == True:
-            self.swap_item()
-            print(self._item)
+        while self.can_move_right:
+            self.set_light_off()
+            print('inside a while loop attempt', self._item)
+            print(self._position, self.compare_item())
+            self.compare_item()
+            if self.compare_item() == -1:
+                self.bigger()
 
+            # setup a self.smaller()
+        pass
         return self._list
 
 
